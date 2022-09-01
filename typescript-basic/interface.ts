@@ -13,6 +13,36 @@ interface Person {
   age: number;
   nickname?: string; // optional
   readonly id: number; // read only
+
+  // method
+  // sayHi: () => void;
+  // sayHi(address: string): string;
 }
 
-const me: Person = { name: "rupak", age: 21, id: 1 };
+// opening interface to add new property
+interface Person {
+  nickName: string;
+}
+
+const me: Person = {
+  name: "rupak",
+  nickName: "dhoke",
+  age: 21,
+  id: 1,
+  // sayHi: address => {
+  //   return `address`;
+  // },
+};
+
+// Extending interface
+interface newMe extends Person {
+  address: string;
+}
+
+const person: newMe = {
+  id: 2,
+  name: "indira",
+  nickName: "nakali",
+  age: 22,
+  address: "NJ",
+};

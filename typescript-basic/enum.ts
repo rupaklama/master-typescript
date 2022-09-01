@@ -10,7 +10,7 @@ enum OrderStatus {
   RETURNED,
 }
 
-// Instead of saying value of 3, it says the type is OrderStatus.DELIVERED
+// Instead of saying value of 2, it says the type is OrderStatus.DELIVERED
 // which is readable, make sense & reuse the code
 const myStatus = OrderStatus.DELIVERED;
 
