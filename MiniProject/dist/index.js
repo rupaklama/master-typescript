@@ -21,15 +21,57 @@ console.log(numChars);
 // mystery;
 // 'Type Assertion' in DOM demo
 // NOTE - overriding default generic type with the correct type
-const input = document.getElementById("todo");
+const input = document.getElementById("todo-input");
 // const input = document.getElementById("todo")!;
-btn.addEventListener("click", () => {
-    alert(input.value);
-    input.value = " ";
-});
 // alternate generic syntax for 'as'
 // same as above but does not work with JSX
 // btn.addEventListener("click", () => {
 //   alert((<HTMLInputElement>input).value);
 //   (<HTMLInputElement>input).value = " ";
 // });
+// btn.addEventListener("click", () => {
+//   alert(input.value);
+//   input.value = " ";
+// });
+const form = document.querySelector("form");
+const list = document.querySelector("#todo-list");
+function readTodos() {
+    const todosJSON = localStorage.getItem("todos");
+    if (todosJSON === null)
+        return [];
+    // now ts knows it is going to be string on here,
+    // this process is known as Type Narrowing
+    return JSON.parse(todosJSON);
+}
+const todos = readTodos();
+// create todos to display
+todos.forEach(todo => createTodo(todo));
+function handleSubmit(e) {
+    e.preventDefault();
+    const newTodo = {
+        text: input.value,
+        completed: false,
+    };
+    createTodo(newTodo);
+    todos.push(newTodo);
+    // localStorage.setItem("todos", JSON.stringify(todos));
+    saveTodos();
+    input.value = "";
+}
+function saveTodos() {
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+function createTodo(todo) {
+    const newLi = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = todo.completed;
+    checkbox.addEventListener("change", () => {
+        todo.completed = checkbox.checked;
+        saveTodos();
+    });
+    newLi.append(todo.text);
+    newLi.append(checkbox);
+    list.append(newLi);
+}
+form.addEventListener("submit", handleSubmit);
