@@ -35,6 +35,7 @@ const input = document.getElementById("todo-input");
 // });
 const form = document.querySelector("form");
 const list = document.querySelector("#todo-list");
+const todos = readTodos();
 function readTodos() {
     const todosJSON = localStorage.getItem("todos");
     if (todosJSON === null)
@@ -43,9 +44,6 @@ function readTodos() {
     // this process is known as Type Narrowing
     return JSON.parse(todosJSON);
 }
-const todos = readTodos();
-// create todos to display
-todos.forEach(todo => createTodo(todo));
 function handleSubmit(e) {
     e.preventDefault();
     const newTodo = {
@@ -75,3 +73,5 @@ function createTodo(todo) {
     list.append(newLi);
 }
 form.addEventListener("submit", handleSubmit);
+// create todos to display
+todos.forEach(todo => createTodo(todo));

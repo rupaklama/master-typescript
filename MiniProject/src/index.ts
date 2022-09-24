@@ -49,6 +49,8 @@ interface Todo {
   completed: boolean;
 }
 
+const todos: Todo[] = readTodos();
+
 function readTodos(): Todo[] {
   const todosJSON = localStorage.getItem("todos");
 
@@ -58,11 +60,6 @@ function readTodos(): Todo[] {
   // this process is known as Type Narrowing
   return JSON.parse(todosJSON);
 }
-
-const todos: Todo[] = readTodos();
-
-// create todos to display
-todos.forEach(todo => createTodo(todo));
 
 function handleSubmit(e: SubmitEvent) {
   e.preventDefault();
@@ -103,3 +100,6 @@ function createTodo(todo: Todo) {
 }
 
 form.addEventListener("submit", handleSubmit);
+
+// create todos to display
+todos.forEach(todo => createTodo(todo));
