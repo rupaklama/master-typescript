@@ -2,6 +2,17 @@
 // 'Type Assertion' in DOM demo with "AS"
 // 'Type Assertion' is assigning a Specific Type to provide more information
 // NOTE - overriding default generic type with the correct type
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 // const inputEl = document.querySelector("#username") as HTMLInputElement;
 // note - Using default DOM Generic Function
 // note - same as above but with Generic
@@ -35,3 +46,43 @@ function identityGood(item) {
 identityGood("string");
 identityGood(7);
 identityGood({ name: "Ring Tail" });
+// another generic function
+function getRandomElement(list) {
+    var randIdx = Math.floor(Math.random() * list.length);
+    console.log("randIdx", randIdx);
+    return list[randIdx];
+}
+console.log(getRandomElement(["a", "b", "c"]));
+console.log(getRandomElement([1, 2, 3]));
+// multiple types with Type Constraints
+// extends object is to make sure the arg is the Object Type
+// note - convention is to follow alphabetical order in generic for multiple types - T U V W X
+function merge(obj1, obj2) {
+    return __assign(__assign({}, obj1), obj2);
+}
+var comboObj = merge({ name: "pak" }, { pet: "mama" });
+function printDoubleLength(thing) {
+    return thing.length * 2;
+}
+// string primitive has a length property that satisfies the interface, while number does not
+console.log(printDoubleLength("adfdfd"));
+// console.log(printDoubleLength(234));
+// Default Type Parameters - <T = number>
+function makeEmptyArray() {
+    return [];
+}
+var nums = makeEmptyArray();
+// overriding above default type
+var bools = makeEmptyArray();
+var PlayList = /** @class */ (function () {
+    function PlayList() {
+        this.queue = [];
+    }
+    PlayList.prototype.add = function (el) {
+        this.queue.push(el);
+    };
+    return PlayList;
+}());
+var songs = new PlayList();
+var videos = new PlayList();
+videos.add();
