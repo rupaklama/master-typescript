@@ -1,3 +1,6 @@
+// Generics is to create a reusable code and it works with many Types instead of a Single Type.
+// Generic can be use with Type Assertion, Function, Interface and Class etc
+
 // 'Type Assertion' in DOM demo with "AS"
 // 'Type Assertion' is assigning a Specific Type to provide more information
 // NOTE - overriding default generic type with the correct type
@@ -64,7 +67,7 @@ console.log(getRandomElement(["a", "b", "c"]));
 console.log(getRandomElement([1, 2, 3]));
 
 // multiple types with Type Constraints
-// extends object is to make sure the arg is the Object Type
+// 'extends object' is to make sure the arg is the Object Type
 // note - convention is to follow alphabetical order in generic for multiple types - T U V W X
 function merge<T extends object, U extends object>(obj1: T, obj2: U) {
   return {
@@ -119,4 +122,4 @@ class PlayList<T> {
 
 const songs = new PlayList<Song>();
 const videos = new PlayList<Video>();
-videos.add();
+videos.add({ title: "me", creator: "you", resolution: "hd" });
