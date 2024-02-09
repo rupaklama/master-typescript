@@ -10,7 +10,7 @@ class Player {
   // note - same as above but cleaner & readable syntax which runs in run time
   // private _score = 0;
 
-  // NOTE - By making this protected, we can access outside of this class expect only in Child Classes
+  // NOTE - protected implies that the method or property is accessible only internally within the class or any class that extends it but not externally
   protected _score = 0;
 
   // ReadOnly modifier is unique to TS only
